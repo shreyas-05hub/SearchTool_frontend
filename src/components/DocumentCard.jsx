@@ -1,13 +1,45 @@
-import React from 'react';
+import React from "react";
 
-export function DocumentCard({doc, onOpen}){
+export function DocumentCard({ doc, onOpen }) {
+  const fileName = doc.file?.split("/").pop() || doc.title || "Document";
+
   return (
-    <div style={{border:'1px solid #eee', padding:12, borderRadius:8, background:'#fff', marginBottom:10}}>
-      <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-        <strong>{doc.title}</strong>
-        <button onClick={()=>onOpen(doc)} style={{padding:'6px 8px', borderRadius:6, border:'none', background:'#0ea5e9', color:'#fff'}}>Open</button>
+    <div
+      style={{
+        border: "1px solid #eee",
+        padding: 12,
+        borderRadius: 8,
+        background: "#fff",
+        marginBottom: 10,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <strong>{fileName}</strong>
+
+        <button
+          onClick={() => onOpen(doc)}
+          style={{
+            padding: "6px 8px",
+            borderRadius: 6,
+            border: "none",
+            background: "#0ea5e9",
+            color: "#fff",
+            cursor: "pointer",
+          }}
+        >
+          Open
+        </button>
       </div>
-      <div style={{color:'#555', marginTop:8, fontSize:13}}>{doc.snippet}...</div>
+
+      <div style={{ color: "#555", marginTop: 8, fontSize: 13 }}>
+        {(doc.snippet || doc.content || "").substring(0, 120)}...
+      </div>
     </div>
   );
 }

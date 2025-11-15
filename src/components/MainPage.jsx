@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Header } from './Header';
-import { UploadCard } from './UploadCard';
-import { SearchBar } from './SearchBar';
-import { SearchResults } from './SearchResults';
-import { PreviewModal } from './PreviewModal';
+import React, { useState } from "react";
+import axios from "axios";
+import { Header } from "./Header";
+import { UploadCard } from "./UploadCard";
+import { SearchBar } from "./SearchBar";
+import { SearchResults } from "./SearchResults";
+import { PreviewModal } from "./PreviewModal";
 
-export default function MainPage(){
-  const [query, setQuery] = useState('');
+export default function MainPage() {
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [selected, setSelected] = useState(null);
 
   const search = async () => {
     setLoading(true);
-    try{
-      const res = await axios.get('http://127.0.0.1:8000/api/search/', { params: { q: query }});
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/search/", {
+        params: { q: query },
+      });
       setResults(res.data);
-    } catch(e){
-      alert('Search failed');
+    } catch (e) {
+      alert("Search failed");
     } finally {
       setLoading(false);
     }
@@ -29,12 +31,28 @@ export default function MainPage(){
   };
 
   return (
-    <div style={{maxWidth:900, margin:'30px auto', fontFamily:'Arial, sans-serif', padding:16}}>
+    <div
+      style={{
+        maxWidth: 900,
+        margin: "30px auto",
+        fontFamily: "Arial, sans-serif",
+        padding: 16,
+      }}
+    >
       <Header />
+
       <UploadCard />
-      <SearchBar query={query} setQuery={setQuery} onSearch={search} loading={loading} />
+
+      <SearchBar
+        query={query}
+        setQuery={setQuery}
+        onSearch={search}
+        loading={loading}
+      />
+
       <SearchResults results={results} onOpen={openDoc} />
-      <PreviewModal doc={selected} onClose={()=>setSelected(null)} />
+
+      <PreviewModal doc={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }

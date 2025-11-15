@@ -20,7 +20,7 @@ export function UploadCard() {
     }
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/upload/", form, {
+      const res = await axios.post("https://searchtool-backend-yzyd.onrender.com/upload/", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

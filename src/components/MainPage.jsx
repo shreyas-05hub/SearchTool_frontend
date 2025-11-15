@@ -15,7 +15,7 @@ export default function MainPage() {
   const search = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://127.0.0.1:8000/search/", {
+      const res = await axios.get("https://searchtool-backend-yzyd.onrender.com/search/", {
         params: { q: query },
       });
       setResults(res.data);

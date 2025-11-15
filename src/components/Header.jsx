@@ -12,7 +12,7 @@ export function Header() {
       }}
     >
       <h1 style={{ textAlign: "center", fontSize: 20, margin: 0 }}>
-        Knowledge Discovery System
+        Knowledge Discovery & Internal Search 
       </h1>
     </header>
   );
